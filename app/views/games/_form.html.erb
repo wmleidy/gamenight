@@ -16,5 +16,15 @@
   <%= f.text_field :title %>
   <%= f.label :description %>
   <%= f.text_area :description %>
+  <%= f.label :min_players %>
+  <%= f.number_field :min_players, :class => 'text_field', :step => 1 %>
+  <%= f.label :max_players %>
+  <%= f.number_field :max_players, :class => 'text_field', :step => 1 %>
+  <%= f.label :average_time %>
+  <%= f.number_field :average_time, :class => 'text_field', :step => 5 %>
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url %>
+  <%= f.submit %>
+
 <% end %>
 
