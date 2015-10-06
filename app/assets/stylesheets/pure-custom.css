@@ -1,0 +1,51 @@
+.nav-custom {
+	background-color: black;
+
+}
+
+.site-title {
+	margin-right: 8em;
+	font-family: Georgia;
+	text-align: right;
+	color: #C6B610;
+	padding-bottom: 1em;
+}
+
+.site-subtitle {
+	margin-right: 3em;
+  font-family: Lucida;
+  text-align: right;
+  margin-bottom: .5em;
+  font-style: italic;	
+}
+.user-login{
+	text-align: right;
+	color: #1BA20D;
+
+}
+
+
+#menu
+	.menu-item-custom {
+		background-color: white;
+	}
+
+	.menu-custom {
+		background-color: #7B3ACD;
+	}
+
+	.custom-image {
+		width: 100%;
+		height: auto;
+		background-color: white;
+	}
+
+#main
+  
+  a {
+  	color: #1BA20D;
+  }
+
+  .content-subhead-custom{
+  	color: #C20F18;
+  }
