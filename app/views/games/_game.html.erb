@@ -1,6 +1,13 @@
-<div class="game">
-  <p><%= link_to "#{game.title}", game %></p>
-  <p>Players: <%= game.min_players %>-<%= game.max_players %></p>
-  <p>Average Time: <%= game.average_time %> minutes</p>
-  <img src="<%= game.image_url %>" alt="<%= game.title %>" />
+<div class="game-wrapper">
+  <div class="game">
+    <img class="game-img pure-img-responsive" src="<%= game.image_url %>" alt="<%= game.title %>" />
+    <div class="game-text">
+      <h3><%= link_to "#{game.title}", game %></h3>
+      <p>Players: <%= game.min_players %>-<%= game.max_players %></p>
+      <p>Average Time: <%= game.average_time %> minutes</p>
+    </div>
+    <div class="game-votes">
+      <%= game.vote_count %>
+    </div>
+  </div>
 </div>
