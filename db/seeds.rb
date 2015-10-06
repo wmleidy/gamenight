@@ -52,58 +52,50 @@ end
   Comment.create!(body: Faker::Hacker.say_something_smart,user_id: rand(1..25),game_id: rand(1..30))
 end
 
-25.times do |user|
-  used_games = []
-  5.times do
-    game = rand(1..30)
-    until !used_games.include?(game)
-      game = rand(1..30)
-    end
-    used_games << game
-    DesiredGame.create!(wanter_id: user + 1,wanted_game_id: game)
+users = User.all
+games = Game.all
+
+users.each do |user|
+  owned_games = games.sample(rand(4..8))
+  owned_games.each do |owned_game|
+    user.games << owned_game
   end
 end
 
-25.times do |user|
-  used_games = []
-  5.times do
-    game = rand(1..30)
-    until !used_games.include?(game)
-      game = rand(1..30)
-    end
-    used_games << game
-    OwnedGame.create!(owner_id: user + 1,game_id: game)
+users.each do |user|
+  wanted_games = games.sample(rand(4..8))
+  wanted_games.each do |wanted_game|
+    user.wanted_games << wanted_game
   end
 end
 
-25.times do |user|
-  rand(1..10).times do
-    loop do
-      buddy = rand(1..25)
-      break if buddy != user + 1
-    end
-
-    if !Relationship.find_by(user_id: user + 1, buddy_id: buddy)
-      Relationship.create!(user_id: user + 1, buddy_id: buddy)
-    end
+users.each do |user|
+  voted_games_ids = (1..30).to_a.sample(15)
+  voted_games_ids.each do |game_id|
+    Vote.create!(user_id: user.id, votable_type: "Game", votable_id: game_id, value: [1,1,1, -1,1].sample)
   end
 end
 
 
-25.times do |user|
-  games = (1..30).to_a
-  games = games.sample(15)
-  games.each do |game_id|
-    Vote.create!(user_id: user + 1, votable_type: "Game", votable_id: game_id, value: [1,1,1, -1,1].sample)
+users.each do |user|
+  voted_comments_ids = (1..50).to_a.sample(20)
+  voted_comments_ids.each do |comment_id|
+    Vote.create!(user_id: user.id, votable_type: "Comment", votable_id: comment_id, value: [1,1,1, -1,1].sample)
   end
 end
 
-
-25.times do |user|
-  comments = (1..50).to_a
-  comments = comments.sample(20)
-  comments.each do |comment_id|
-    Vote.create!(user_id: user + 1, votable_type: "Comment", votable_id: comment_id, value: [1,1,1, -1,1].sample)
+users.each_with_index do |user, index|
+  potential_buddies = (1..25).to_a - [index + 1]
+  chosen_buddy_ids = potential_buddies.sample(rand(8..12))
+  chosen_buddy_ids.each do |chosen_buddy_id|
+    Relationship.create!(user_id: user.id, buddy_id: chosen_buddy_id)
   end
 end
 
+relationships = Relationship.all
+relationships.each do |relationship|
+  # Testing for mutual buddy relationships
+  if Relationship.find_by(user_id: relationship.buddy_id, buddy_id: relationship.user_id)
+    relationship.update(status: 1)
+  end
+end
