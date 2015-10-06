@@ -1,0 +1,8 @@
+<h1>Edit Game</h1>
+
+<%= render 'form' %>
+<%= link_to 'Delete Game', game_path(@game),
+  method: :delete,
+  data: { confirm: "The game will be lost forever. Are you sure?"} %>
+
+<%= link_to 'Back', game_path(@game) %>
