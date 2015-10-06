@@ -13,7 +13,7 @@ class Game < ActiveRecord::Base
   has_many :desired_games, foreign_key: "wanted_game_id"
   has_many :wanters, through: :desired_games
 
-  def vote_total
+  def vote_count
     self.votes.inject(0) { |total, vote| total += vote.value }
   end
 

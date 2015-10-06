@@ -11,6 +11,7 @@ class GamesController < ApplicationController
 
   def show
     @comments = @game.comments
+    @comment = Comment.new
   end
 
   def new
@@ -43,7 +44,7 @@ class GamesController < ApplicationController
   end
 
   private
-  def set_games
+  def set_game
     @game = Game.find(params[:id])
   end
 
