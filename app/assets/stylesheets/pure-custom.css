@@ -4,9 +4,9 @@
 }
 
 .site-title {
-	margin-right: 8em;
+	/*margin-right: 8em;*/
 	font-family: Georgia;
-	text-align: right;
+	text-align: center;
 	color: #C6B610;
 	padding-bottom: 1em;
 }
@@ -16,7 +16,7 @@
   font-family: Lucida;
   text-align: right;
   margin-bottom: .5em;
-  font-style: italic;	
+  font-style: italic;
 }
 .user-login{
 	text-align: right;
@@ -41,7 +41,7 @@
 	}
 
 #main
-  
+
   a {
   	color: #1BA20D;
   }
@@ -49,3 +49,71 @@
   .content-subhead-custom{
   	color: #C20F18;
   }
+
+.game-wrapper {
+  width: 70%;
+  display: inline-block;
+  position: relative;
+  margin: 1.5em 15%;
+}
+
+.game-wrapper:after {
+  padding-top: 140.0560224%;
+  display: block;
+  content: '';
+}
+
+.game {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-image: url("/images/mobile-background.jpeg");
+  background-size: contain;
+  border-radius: 5%;
+
+}
+
+.game-img {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  width: 80%;
+  min-height: 45%;
+  max-height: 45%;
+  border: 5px solid black;
+  opacity: .7;
+}
+
+.game-text {
+  position: absolute;
+  top: 52%;
+  left: 10%;
+  margin-right: 10%;
+}
+
+.game-text h3 {
+  font-size: 1.5em;
+}
+
+.game-votes {
+  position: absolute;
+  top: 90%;
+  left: 90%;
+}
+
+/* Desktop Rules */
+
+@media screen and (min-width: 48em) {
+  .game-wrapper {
+  width: 31%;
+  margin: 0.5em 1%;
+}
+
+@media screen and (min-width: 80em) {
+  .game-wrapper {
+    width: 22%;
+     margin: 0.5em 1%;
+  }
+}
