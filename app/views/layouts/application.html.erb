@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="side-menu.css">
+  <link rel="stylesheet" href="pure-custom.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <title>Gamenight</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu">
+            <a class="menu-heading-custom pure-menu-heading" href="#"><img src="chess_knight_redux1.jpg"></a>
+            <ul class="pure-menu-list">
+                <li class="menu-item-custom pure-menu-item"><a href="#" class="pure-menu-link">your comments</a></li>
+                <li class="menu-item-custom pure-menu-item"><a href="#" class="pure-menu-link">your buddies</a></li>
+
+                <li class="menu-item-custom pure-menu-item" class="menu-item-divided pure-menu-selected">
+                    <a href="#" class="pure-menu-link">your games</a>
+                </li>
+
+                <li class="menu-item-custom pure-menu-item"><a href="#" class="pure-menu-link">your wishlist</a></li>
+            </ul>
+            <a class="pure-menu-heading" href="#"><img class=" pure-image-responsive">Games</a>
+            <ul class="pure-menu-list">
+              <li class="menu-item-custom pure-menu-item"><a href="#" class="pure-menu-link">all the games</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+  <div id="main">
+    <nav class="nav-custom">
+            <div class="user-login">login/logout/etc</div>
+            <h1 class="site-title">Gamenight</h1>
+            <h2 class="site-subtitle"></h2>
+    </nav>
+        
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
 <%= yield %>
 
 </body>
