@@ -7,7 +7,7 @@ class Comment < ActiveRecord::Base
   belongs_to :game
   has_many :votes, :as => :votable
 
-  def vote_total
+  def vote_count
     self.votes.inject(0) { |total, vote| total += vote.value }
   end
 end

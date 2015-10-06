@@ -1,8 +1,8 @@
 <h1> <%= @game.title %> </h1>
-<img src="<%= game.image_url %>" alt="<%= game.title %>" />
+<img src="<%= @game.image_url %>" alt="<%= @game.title %>" />
 <p>Description: <%= @game.description %></p>
-<p>Players: <%= game.min_players %>-<%= game.max_players %></p>
-<p>Average Time: <%= game.average_time %> minutes</p>
+<p>Players: <%= @game.min_players %>-<%= @game.max_players %></p>
+<p>Average Time: <%= @game.average_time %> minutes</p>
 <p>Features:</p>
 <ul>
 <% @game.mechanics.each do |mechanic| %>
@@ -12,11 +12,13 @@
 <h2>Votes: <%= @game.vote_count %></h2>
 
 <h2>Comments:</h2>
-<%= render @comments %>
+<% if @game.comments.length > 0 %>
+  <%= render @comments %>
+<% end %>
 
 <h3>Add Comment:</h3>
 
-<%= form_for [@game, @comment] do |f| %>
+<%= form_tag("/games/#{@game.id}/comments", method: "post") do %>
 
   <% if @comment.errors.any? %>
   <div id="error_explanation">
@@ -30,6 +32,6 @@
   </div>
   <% end %>
 
-  <%= f.text_area :body %>
-  <%= f.submit %>
+  <textarea name="comments[:body]"></textarea>
+  <%= submit_tag("Add comment") %>
 <% end %>
