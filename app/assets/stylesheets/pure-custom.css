@@ -1,11 +1,14 @@
 .nav-custom {
-	background-color: black;
+  background-color: black;
+}
 
+.body-container {
+  /*background-image: url("/images/dice_background.jpeg");*/
 }
 
 .site-title {
 	/*margin-right: 8em;*/
-	font-family: Georgia;
+	font-family: "Courier New", Courier, monospace;
 	text-align: center;
 	color: #C6B610;
 	padding-bottom: 1em;
@@ -42,8 +45,12 @@
 
 #main
 
+  .partial-header {
+    color: #C20F18;
+  }
+
   a {
-  	color: #1BA20D;
+  	color: #053700;
   }
 
   .content-subhead-custom{
@@ -93,25 +100,53 @@
   margin-right: 10%;
 }
 
-.game-text h3 {
-  font-size: 1.5em;
+.game-text p {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+  color: #420003;
+  opacity: .7;
 }
 
+.game-text h3 {
+  font-size: 1.5em;
+  font-family: "Times New Roman", Times, serif;
+
+}
+
+.votes-label {
+  position: absolute;
+  top:78%;
+  left: 80%;
+  font-family: Georgia, serif;
+  font-size: 1em;
+  font-style: italic;
+  color: #320D61;
+
+}
 .game-votes {
   position: absolute;
-  top: 90%;
-  left: 90%;
+  top: 85%;
+  left: 80%;
+  font-family: Georgia, serif;
+  font-size: 3em;
+  color: #320D61;
 }
 
 /* Desktop Rules */
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 56em) {
   .game-wrapper {
-  width: 31%;
+  width: 35%;
   margin: 0.5em 1%;
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 76em) {
+  .game-wrapper {
+    width: 25%;
+     margin: 0.5em 1%;
+  }
+}
+@media screen and (min-width: 88em) {
   .game-wrapper {
     width: 22%;
      margin: 0.5em 1%;
