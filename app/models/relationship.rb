@@ -7,6 +7,6 @@ class Relationship < ActiveRecord::Base
 
   # 0 for pending relationship, 1 for accepted
   # (in future, could add 2 and 3 for declined and blocked, respectively)
-  validates :value, presence: true, :inclusion => {:in => [0,1]}
+  validates :status, presence: true, :inclusion => {:in => [0,1]}
 
 end

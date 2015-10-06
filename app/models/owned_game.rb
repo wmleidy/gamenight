@@ -1,5 +1,5 @@
 class OwnedGame < ActiveRecord::Base
-  belongs_to :owner, class_name: User
+  belongs_to :owner, class_name: User, foreign_key: :owner_id
   belongs_to :game
 
   validates :owner_id, presence: true

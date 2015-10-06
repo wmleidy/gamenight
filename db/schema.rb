@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20151005224857) do
   end
 
   create_table "mechanics", force: :cascade do |t|
-    t.string "type", null: false
+    t.string "trait", null: false
   end
 
   create_table "owned_games", force: :cascade do |t|

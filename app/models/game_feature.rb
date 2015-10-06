@@ -1,4 +1,4 @@
-class GameFeature < ActiveRecord::Migration
+class GameFeature < ActiveRecord::Base
   validates :game_id, presence: true
   validates :mechanic_id, presence: true
 
