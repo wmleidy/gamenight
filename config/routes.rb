@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+  resources :sessions, only: [:new, :create, :destroy]
+
   devise_for :users
+
+  resources :games
+
+  post 'games/:id/comments' => 'comments#create'
+  post 'games/:id/votes'    => 'votes#create_game_vote'
+  post 'comments/:id/votes' => 'votes#create_comment_vote'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
