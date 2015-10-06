@@ -30,7 +30,8 @@ Things you may want to cover:
 # Gamenight
 
 _your friendly neighborhood board-game emporium_
-  (look at all the things!)[http://dbc-gamenight.herokuapp.com/]
+
+(look at all the things!) http://dbc-gamenight.herokuapp.com/
 
 the **build**:
 
@@ -54,7 +55,8 @@ the **works**:
 
 the **why**:
 
-    We felt there was a dire need for a _proper_, social-driven community devoted entirely to board-games.
+  > We felt there was a dire need for a _proper_, social-driven community 
+  > devoted entirely to board-games.
 
 the **who**:
 Roger Daltrey, Pete Townshend, Keith Moon....
@@ -62,7 +64,7 @@ Roger Daltrey, Pete Townshend, Keith Moon....
 ...**who** we are:
 Bill Leidy, Alexis Moody, Chris Zajac
 
-the **schema**
+the **schema**:
 ![alt-text](gamenight_schema.png "Schema")
 
 
