@@ -53,20 +53,39 @@ end
 end
 
 25.times do |user|
+  used_games = []
   5.times do
-    DesiredGame.create!(wanter_id: user + 1,wanted_game_id: rand(1..30))
+    game = rand(1..30)
+    until !used_games.include?(game)
+      game = rand(1..30)
+    end
+    used_games << game
+    DesiredGame.create!(wanter_id: user + 1,wanted_game_id: game)
   end
 end
 
 25.times do |user|
+  used_games = []
   5.times do
-    OwnedGame.create!(owner_id: user + 1,game_id: rand(1..30))
+    game = rand(1..30)
+    until !used_games.include?(game)
+      game = rand(1..30)
+    end
+    used_games << game
+    OwnedGame.create!(owner_id: user + 1,game_id: game)
   end
 end
 
 25.times do |user|
   rand(1..10).times do
-    Relationship.create!(user_id: user + 1, buddy_id: rand(1..25))
+    loop do
+      buddy = rand(1..25)
+      break if buddy != user + 1
+    end
+
+    if !Relationship.find_by(user_id: user + 1, buddy_id: buddy)
+      Relationship.create!(user_id: user + 1, buddy_id: buddy)
+    end
   end
 end
 

@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
-  resources :sessions, only: [:new, :create, :destroy]
+  # resources :sessions, only: [:new, :create, :destroy]
 
   devise_for :users
 
   resources :games
+  resources :users, only: [:show]
 
   post 'games/:id/comments' => 'comments#create'
   post 'games/:id/votes'    => 'votes#create_game_vote'
   post 'comments/:id/votes' => 'votes#create_comment_vote'
+  post 'users/:id/:buddy' => 'users#buddies'
+  post 'users/:id/:game' => 'users#owned_games'
+  post 'users/:id/:wanted_game' => 'users#wanted_games'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
+   root 'games#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
