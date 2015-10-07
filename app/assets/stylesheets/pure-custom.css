@@ -85,6 +85,14 @@
   }
 
 #main
+
+/*welcome page*/
+.welcome h3 {
+  font-family: 'Fredericka the Great', cursive;
+  padding-left: 1em;
+  padding-right: 3em;
+}
+
 /*user affiliated regalia*/
   .user-list {
     margin-left: 1em;
