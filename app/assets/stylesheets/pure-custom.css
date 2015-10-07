@@ -222,6 +222,36 @@
   /*font-family: "Loved by the King", cursive ;*/
 }
 
+/*user-login*/
+.alert+h2 {
+  padding-left: 8%;
+  font-family: "Cedarville Cursive", cursive;
+  color: #8d080E;
+}
+.new_user {
+  padding-left: 8%;
+  font-family: "Fredericka the Great", cursive;
+  text-align: left;
+}
+
+.new_user input {
+  margin-bottom: 1.5em;
+}
+
+.new_user~a {
+  text-decoration: none;
+  margin-top: 1em;
+  margin-left: 8%;
+  padding: 0.2em;
+  display: inline-block;
+  font-family: "Henny Penny", cursive;
+  border: 1px solid #433D00;
+  box-shadow: 0px 0px 1px 0px gray;
+}
+
+.new_user .actions {
+  padding-top: 1em;
+}
 /* Desktop Rules */
 
 @media screen and (min-width: 56em) {
