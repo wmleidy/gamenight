@@ -187,8 +187,8 @@
   .game-wrapper {
   width: 35%;
   margin: 0.5em 1%;
+  }
 }
-
 @media screen and (min-width: 76em) {
   .game-wrapper {
     width: 25%;

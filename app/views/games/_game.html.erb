@@ -3,7 +3,13 @@
     <img class="game-img pure-img-responsive" src="<%= game.image_url %>" alt="<%= game.title %>" />
     <div class="game-text">
       <h3><%= link_to "#{game.title}", game %></h3>
-      <p>Players: <%= game.min_players %>-<%= game.max_players %></p>
+      <p>Players:
+        <% if game.min_players == game.max_players %>
+          <%= game.min_players %>
+        <% else %>
+          <%= game.min_players %>-<%= game.max_players %>
+        <% end %>
+      </p>
       <p>Average Time: <%= game.average_time %> minutes</p>
     </div>
     <p class="votes-label">votes</v>

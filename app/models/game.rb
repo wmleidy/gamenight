@@ -20,6 +20,9 @@ class Game < ActiveRecord::Base
   private
 
   def set_image
-    self.image_url ||= "/app/assets/images/default-image.png"
+    if self.image_url == ""
+      self.image_url = "/images/sorry.jpg"
+    end
+    self.image_url ||= "/images/sorry.jpg"
   end
 end
