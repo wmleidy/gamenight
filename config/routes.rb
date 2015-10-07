@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :games
-  resources :users, only: [:show]
+  resources :users, only: [:index, :show]
 
   post 'games/:id/comments' => 'comments#create'
   post 'games/:id/votes'    => 'votes#create_game_vote'
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post 'users/:id/:buddy' => 'users#buddies'
   post 'users/:id/:game' => 'users#owned_games'
   post 'users/:id/:wanted_game' => 'users#wanted_games'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

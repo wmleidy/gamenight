@@ -1,15 +1,17 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
+
+  def index
+    @user = User.search(params[:search])
+    redirect_to user_path(@user)
+  end
+
   def show
     @user = User.find(params[:id])
-
     if current_user == nil
       redirect_to new_user_session_path
-    elsif current_user.id == @user.id
-      render :'users/show'
-    elsif @user.relationships.find_by(buddy_id: current_user.id)
-      render :'users/show'
     else
-      redirect_to root_path
+      render :'users/show'
     end
   end
 

@@ -1,23 +1,45 @@
 <h1><%= @user.username %>'s Profile</h1>
 <h3> created at<%= @user.created_at%></h3>
+<% if check_friend_status(current_user.id,@user.id) == false %>
+  <%= button_to "Send Buddy Request", {action: "buddies", id: current_user.id, buddy: @user.id}, method: "post" %>
 
-<h3><%= @user.username %>'s Buddies</h3>
-<ul>
-  <% @user.buddies.each do |buddy| %>
-    <li><a href="/users/<%= buddy.id%>"><%= buddy.id %></a></li>
-  <% end %>
-</ul>
+    <h3><%= @user.username %>'s Owned Games</h3>
+  <ul>
+    <% @user.games.each do |game| %>
+      <li><a href="/games/<%= game.id%>"><%= game.title %></a></li>
+    <% end %>
+  </ul>
 
-<h3><%= @user.username %>'s Owned Games</h3>
-<ul>
-  <% @user.games.each do |game| %>
-    <li><a href="/games/<%= game.id%>"><%= game.title %></a></li>
-  <% end %>
-</ul>
+  <h3><%= @user.username %>'s Desired Games</h3>
+  <ul>
+    <% @user.wanted_games.each do |game| %>
+      <li><a href="/games/<%= game.id%>"><%= game.title %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>Add A Buddy</h3>
+  <%= render 'search' %>
 
-<h3><%= @user.username %>'s Desired Games</h3>
-<ul>
-  <% @user.wanted_games.each do |game| %>
-    <li><a href="/games/<%= game.id%>"><%= game.id %></a></li>
-  <% end %>
-</ul>
+  <h3><%= @user.username %>'s Buddies</h3>
+  <ul>
+    <% @user.buddies.each do |buddy| %>
+      <li><a href="/users/<%= buddy.id%>"><%= buddy.username %></a></li>
+    <% end %>
+  </ul>
+
+  <h3><%= @user.username %>'s Owned Games</h3>
+  <ul>
+    <% @user.games.each do |game| %>
+      <li><a href="/games/<%= game.id%>"><%= game.title %></a></li>
+    <% end %>
+  </ul>
+
+  <h3><%= @user.username %>'s Desired Games</h3>
+  <ul>
+    <% @user.wanted_games.each do |game| %>
+      <li><a href="/games/<%= game.id%>"><%= game.title %></a></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
