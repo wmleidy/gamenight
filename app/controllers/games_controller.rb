@@ -56,10 +56,17 @@ class GamesController < ApplicationController
   end
 
   def update
-    mechanic_trait = params[:game].delete(:mechanics)
-    @mechanic = Mechanic.find_by(trait: mechanic_trait)
+    @mechanics = Mechanic.all
+    mechanic_traits = params[:game].delete(:mechanics)
     if @game.update(game_params)
-      GameFeature.find_or_create_by(game_id: @game.id, mechanic_id: @mechanic.id)
+      @mechanics.each do |mechanic|
+        if mechanic_traits.include?(mechanic.trait)
+          GameFeature.find_or_create_by(game_id: @game.id, mechanic_id: mechanic.id)
+        else
+          game_feature = GameFeature.find_by(game_id: @game.id, mechanic_id: mechanic.id)
+          game_feature.destroy if game_feature
+        end
+      end
       redirect_to game_path(@game)
     else
       render :edit
