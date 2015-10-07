@@ -6,11 +6,26 @@ class GamesController < ApplicationController
   before_filter :check_admin_status, :only => [:edit, :update, :destroy]
 
   def index
-    @games = Game.all
+    @games = Game.order("title")
+  end
+
+  def most_popular
+    @games = Game.all.sort_by { |game| game.vote_count }.reverse
+    render :index
+  end
+
+  def most_owned
+    @games = Game.all.sort_by { |game| game.owners.count }.reverse
+    render :index
+  end
+
+  def most_wanted
+    @games = Game.all.sort_by { |game| game.wanters.count }.reverse
+    render :index
   end
 
   def show
-    @comments = @game.comments
+    @comments = @game.comments.order("created_at DESC")
     @comment = Comment.new
   end
 
@@ -21,11 +36,15 @@ class GamesController < ApplicationController
 
   def create
     @mechanics = Mechanic.all
-    mechanic_trait = params[:game].delete(:mechanics)
-    @mechanic = Mechanic.find_by(trait: mechanic_trait)
+    mechanic_traits = params[:game].delete(:mechanics)
     @game = Game.new(game_params)
     if @game.save
-      GameFeature.create(game_id: @game.id, mechanic_id: @mechanic.id)
+      mechanic_traits.each do |mechanic_trait|
+        unless mechanic_trait == ""
+          mechanic = Mechanic.find_by(trait: mechanic_trait)
+          GameFeature.create(game_id: @game.id, mechanic_id: mechanic.id)
+        end
+      end
       redirect_to game_path(@game)
     else
       render :new
@@ -37,10 +56,17 @@ class GamesController < ApplicationController
   end
 
   def update
-    mechanic_trait = params[:game].delete(:mechanics)
-    @mechanic = Mechanic.find_by(trait: mechanic_trait)
+    @mechanics = Mechanic.all
+    mechanic_traits = params[:game].delete(:mechanics)
     if @game.update(game_params)
-      GameFeature.find_or_create_by(game_id: @game.id, mechanic_id: @mechanic.id)
+      @mechanics.each do |mechanic|
+        if mechanic_traits.include?(mechanic.trait)
+          GameFeature.find_or_create_by(game_id: @game.id, mechanic_id: mechanic.id)
+        else
+          game_feature = GameFeature.find_by(game_id: @game.id, mechanic_id: mechanic.id)
+          game_feature.destroy if game_feature
+        end
+      end
       redirect_to game_path(@game)
     else
       render :edit

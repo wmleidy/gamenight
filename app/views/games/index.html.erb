@@ -1,4 +1,10 @@
 <h1 class="partial-header">All Games</h1>
+<p>
+	<%= link_to "A-Z", games_path %>
+	<%= link_to "Most Popular", most_popular_games_path %>
+	<%= link_to "Most Owned", most_owned_games_path %>
+	<%= link_to "Most Wanted", most_wanted_games_path %>
+</p>
 <%= render @games %>
 
 <p><%= link_to "Add a New Game", new_game_path %></p>

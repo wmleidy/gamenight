@@ -52,10 +52,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @game = Game.find(params[:game])
 
-    if OwnedGame.find_by(user_id: @user.id, game_id: @game.id)
+    if OwnedGame.find_by(owner_id: @user.id, game_id: @game.id)
       @error = "You already own this game"
+      render :"games/index"
     else
-      OwnedGame.create!(user_id: @user.id, game_id: @game.id)
+      OwnedGame.create!(owner_id: @user.id, game_id: @game.id)
+      redirect_to games_path
     end
   end
 
@@ -63,10 +65,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @game = Game.find(params[:wanted_game])
 
-    if DesiredGame.find_by(user_id: @user.id, game_id: @game.id)
+    if DesiredGame.find_by(wanter_id: @user.id, wanted_game_id: @game.id)
       @error = "You already have this game in your wishlist"
+      render :"games/index"
     else
-      DesiredGame.create!(user_id: @user.id, game_id: @game.id)
+      DesiredGame.create!(wanter_id: @user.id, wanted_game_id: @game.id)
+      redirect_to games_path
     end
   end
 
