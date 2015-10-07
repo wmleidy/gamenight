@@ -14,3 +14,10 @@
     <li><a href="/users/<%= buddy.id%>"><%= buddy.username %></a></li>
   <% end %>
 </ul>
+
+<h3><%= @user.username %>'s Buddy Requests</h3>
+<ul>
+  <% @user.requests.each do |buddy| %>
+    <li><a href="/users/<%= buddy.id %>"><%= buddy.username %></a></li>
+  <% end %>
+</ul>

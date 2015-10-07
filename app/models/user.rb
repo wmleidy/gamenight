@@ -43,12 +43,23 @@ class User < ActiveRecord::Base
   end
 
   def pending
-    buddy_ids = self.relationships.select { |relationship| relationship.status == 0 }
-
+    buddy_ids = self.relationships.where(status: 0)
     @buddies = []
 
     buddy_ids.each do |buddy|
       @buddies << User.find(buddy.buddy_id)
+    end
+
+    @buddies
+  end
+
+  def requests
+    buddy_ids = Relationship.where(buddy_id: self.id).select { |relationship| relationship.status == 0}
+
+    @buddies = []
+
+    buddy_ids.each do |buddy|
+      @buddies << User.find(buddy.user_id)
     end
 
     @buddies
