@@ -75,5 +75,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_status
+    relationship = Relationship.find_by(user_id: params[:id], buddy_id: params[:buddy_id])
+    relationship.status = 1
+    p relationship
+    @user = User.find(params[:buddy_id])
+    redirect_to user_path(@user)
+  end
+
 end
 

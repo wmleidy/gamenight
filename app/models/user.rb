@@ -31,8 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def mutual
-    buddy_ids = self.relationships.select { |relationship| relationship.status == 1 }
-
+    buddy_ids = self.relationships.where(status: 1)
     @buddies = []
 
     buddy_ids.each do |buddy|

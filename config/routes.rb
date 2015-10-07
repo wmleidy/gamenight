@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post 'users/:id/owned_games/:game' => 'users#owned_games'
   post 'users/:id/wanted_games/:wanted_game' => 'users#wanted_games'
   post 'users/:id/:buddy' => 'users#buddies'
+  post 'users/:id/buddy/:buddy_id' => 'users#change_status'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
