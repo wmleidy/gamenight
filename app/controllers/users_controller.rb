@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def show
     partial = params[:query]
     @user = User.find(params[:id])
@@ -72,6 +73,14 @@ class UsersController < ApplicationController
       DesiredGame.create!(wanter_id: @user.id, wanted_game_id: @game.id)
       redirect_to games_path
     end
+  end
+
+  def change_status
+    relationship = Relationship.find_by(user_id: params[:id], buddy_id: params[:buddy_id])
+    relationship.status = 1
+    p relationship
+    @user = User.find(params[:buddy_id])
+    redirect_to user_path(@user)
   end
 
 end

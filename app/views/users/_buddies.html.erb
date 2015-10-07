@@ -18,6 +18,8 @@
 <h3 class="partial-sub-header"><%= @user.username %>'s Buddy Requests</h3>
 <ul class="user-list">
   <% @user.requests.each do |buddy| %>
-    <li><a href="/users/<%= buddy.id %>"><%= buddy.username %></a></li>
+    <li><a href="/users/<%= buddy.id %>"><%= buddy.username %></a>
+      <%= button_to "Accept Buddy Request", {action: "change_status", id: buddy.id, buddy_id: @user.id}, method: "post" %>
+    </li>
   <% end %>
 </ul>
