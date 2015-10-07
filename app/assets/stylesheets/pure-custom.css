@@ -1,3 +1,14 @@
+.nav-custom h6 a {
+  font-family: "Loved by the King", cursive ;
+  font-size: 2em;
+}
+
+.zero-buddies {
+  font-family: "Henny Penny", cursive;
+  text-decoration: none;
+}
+
+
 #logo {
   /*opacity: .7;*/
   background-color: white;
@@ -90,6 +101,31 @@
   	color: #C20F18;
   }
 
+.game-link-bar {
+  display: inline;
+  float: right;
+}
+.game-link-bar a {
+  margin: .6em 1em .5em .5em;
+/*  margin-left: .5em;
+  margin-right: 1em;
+  margin-bottom: .5em;*/
+  padding-left: .5em;
+  padding-right: .5em;
+  text-decoration: none;
+  border: 1px solid gray;
+  background-color: #320D61;
+  /*padding: .5em;*/
+  display: inline-block;
+  color: white;
+  font-family: "Loved by the King", cursive;
+  font-size: 1.5em;
+}
+
+.games-index {
+  display: inline;
+  font-size: 3em;
+}
 .game-wrapper {
   width: 70%;
   display: inline-block;
