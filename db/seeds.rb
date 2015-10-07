@@ -4,7 +4,7 @@ end
 
 rand(1..5).times do
   user = User.find(rand(1..25))
-  user.admin_privileges = true
+  user.update(admin_privileges: true)
 end
 
 Game.create!([{title: "Durak",description: Faker::Lorem.paragraph,min_players: 2,max_players: 6,average_time: 10,image_url:"https://upload.wikimedia.org/wikipedia/commons/2/27/Regular_Durak.JPG"},
