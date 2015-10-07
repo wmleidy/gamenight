@@ -44,9 +44,13 @@
  <div class=" pure-u-1 pure-u-md-1-3">
 
   <h2>Comments:</h2>
+  <div class="pure-menu pure-menu-scrollable custom-restricted">
+    <ul class="pure-menu-list">
   <% if @game.comments.length > 0 %>
     <%= render @comments %>
   <% end %>
+    </ul>
+  </div>
 
   <h3>Add Comment:</h3>
 

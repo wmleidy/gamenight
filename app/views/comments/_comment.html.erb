@@ -1,4 +1,4 @@
-<div class="comment" id="comment<%= comment.id %>">
+<li class=" pure-menu-item comment" id="comment<%= comment.id %>">
   <p><%= comment.body %></p>
   <p>Vote total: <%= comment.vote_count %>
   <% if current_user %>
@@ -6,4 +6,4 @@
     <%= link_to image_tag("1_14_down.png"), downvote_comment_path(comment), method: :post %>
   <% end %>
   </p>
-</div>
+</li>
