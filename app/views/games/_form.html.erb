@@ -24,6 +24,12 @@
   <%= f.number_field :average_time, :class => 'text_field', :step => 5, :min => 5 %></p><p>
   <%= f.label :image_url %>
   <%= f.text_field :image_url %></p><p>
+  <% possible_mechanics = [] %>
+  <% @mechanics.each do |mechanic| %>
+    <% possible_mechanics << [mechanic.trait, mechanic.trait] %>
+  <% end %>
+  <%= f.label :mechanics %>
+  <%= f.select :mechanics, possible_mechanics %></p><p>
   <%= f.submit %></p>
 
 <% end %>
