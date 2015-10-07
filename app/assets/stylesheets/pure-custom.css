@@ -177,6 +177,10 @@
 
 /*comment related things*/
 
+.comment-table {
+  margin: 2em;
+}
+
 .custom-restricted {
   height: 15em;
   min-width:5em;
@@ -202,6 +206,15 @@
   min-width:5em;
   width: 30em;
 
+}
+
+/*game descrition*/
+
+.game-description {
+  margin: 2em;
+  font-size: 1.1em;
+  color: #8D080E;
+  /*font-family: "Loved by the King", cursive ;*/
 }
 
 /* Desktop Rules */
