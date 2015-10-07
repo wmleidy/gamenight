@@ -81,6 +81,11 @@
     /*text-align: right:;*/
   }
 
+  .partial-sub-header {
+    color: #433D00;
+    font-family: 'Fredericka the Great', cursive;
+  }
+
   a {
   	color: #053700;
     font-size: 1.5em;
