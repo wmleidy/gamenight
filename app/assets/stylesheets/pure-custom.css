@@ -74,16 +74,27 @@
   }
 
 #main
+/*user affiliated regalia*/
+  .user-list {
+    margin-left: 1em;
+
+  }
+
+  #users_search {
+    margin: 1em;
+  }
   .partial-header {
     color: #C20F18;
     font-family: "Cedarville Cursive", cursive;
     padding-left: 1em;
+    font-size: 2em;
     /*text-align: right:;*/
   }
 
   .partial-sub-header {
     color: #433D00;
     font-family: 'Fredericka the Great', cursive;
+    margin-left: 1em;
   }
 
   a {
