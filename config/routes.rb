@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   post 'games/:id/comments' => 'comments#create'
-  post 'games/:id/votes'    => 'votes#create_game_vote'
-  post 'comments/:id/votes' => 'votes#create_comment_vote'
+  post 'games/:id/upvote'    => 'games#upvote', as: :upvote_game
+  post 'games/:id/downvote'  => 'games#downvote', as: :downvote_game
+  post 'comments/:id/upvote' => 'comments#upvote', as: :upvote_comment
+  post 'comments/:id/downvote' => 'comments#downvote', as: :downvote_comment
   post 'users/:id/:buddy' => 'users#buddies'
   post 'users/:id/:game' => 'users#owned_games'
   post 'users/:id/:wanted_game' => 'users#wanted_games'

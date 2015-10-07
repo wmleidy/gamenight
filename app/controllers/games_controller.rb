@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   include ApplicationHelper
 
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :upvote]
   before_filter :check_admin_status, :only => [:edit, :update, :destroy]
 
   def index
@@ -41,6 +41,24 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     redirect_to games_path
+  end
+
+  def upvote
+    @game = Game.find(params[:id])
+    @vote = Vote.find_or_initialize_by(user_id: current_user.id, votable_type: "Game", votable_id: @game.id)
+    new_value = @vote.value + 1
+    @vote.assign_attributes(value: new_value)
+    @vote.save
+    redirect_to game_path(@game)
+  end
+
+  def downvote
+    @game = Game.find(params[:id])
+    @vote = Vote.find_or_initialize_by(user_id: current_user.id, votable_type: "Game", votable_id: @game.id)
+    new_value = @vote.value - 1
+    @vote.assign_attributes(value: new_value)
+    @vote.save
+    redirect_to game_path(@game)
   end
 
   private
