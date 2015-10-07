@@ -36,11 +36,15 @@ class GamesController < ApplicationController
 
   def create
     @mechanics = Mechanic.all
-    mechanic_trait = params[:game].delete(:mechanics)
-    @mechanic = Mechanic.find_by(trait: mechanic_trait)
+    mechanic_traits = params[:game].delete(:mechanics)
     @game = Game.new(game_params)
     if @game.save
-      GameFeature.create(game_id: @game.id, mechanic_id: @mechanic.id)
+      mechanic_traits.each do |mechanic_trait|
+        unless mechanic_trait == ""
+          mechanic = Mechanic.find_by(trait: mechanic_trait)
+          GameFeature.create(game_id: @game.id, mechanic_id: mechanic.id)
+        end
+      end
       redirect_to game_path(@game)
     else
       render :new
