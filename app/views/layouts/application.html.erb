@@ -30,7 +30,7 @@
             <ul class="pure-menu-list">
             <% if current_user %>
                 <li class="menu-item-custom pure-menu-item"><a href="/users/<%= current_user.id %>" class="pure-menu-link">your profile</a></li>
-                <li class="menu-item-custom pure-menu-item"><a href="/users/<%= current_user.id %>" class="pure-menu-link">your buddies</a></li>
+                <li class="menu-item-custom pure-menu-item"><!-- <a href="/users/<%= current_user.id %>" class="pure-menu-link">your buddies</a> --> <%= link_to "your buddies", user_path(current_user, partial: "buddies")%> </li>
 
                 <li class="menu-item-custom pure-menu-item" class="menu-item-divided pure-menu-selected">
                     <a href="/users/<%= current_user.id %>" class="pure-menu-link">your games</a>
@@ -60,14 +60,14 @@
       <% end %>
       <h6 class="user-login pure-u-1-4"><%= link_to "games home", root_path %></h6>
       <h4 class="user-login zero-buddies pure-u-1-4">0-buddies</h4>
-          
+
     </nav>
     <div class="title-bar">
     <h1 class="site-title">Gamenight</h1>
     <h5 class="site-subtitle">"who let the pawns out?"</h5>
-    <img src="/images/dice-banner.jpg">     
+    <img src="/images/dice-banner.jpg">
     </div>
- 
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 

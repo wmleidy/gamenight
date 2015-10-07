@@ -11,12 +11,19 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
+  def show(partial = "")
     @user = User.find(params[:id])
     if current_user == nil
       redirect_to new_user_session_path
     else
-      render :'users/show'
+      case partial
+      when 'buddies'
+      when 'games'
+      when 'wanted games'
+        render :'users/_user_wan'
+      else
+        render :'users/show'
+      end
     end
   end
 
