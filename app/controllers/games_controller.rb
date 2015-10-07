@@ -6,11 +6,26 @@ class GamesController < ApplicationController
   before_filter :check_admin_status, :only => [:edit, :update, :destroy]
 
   def index
-    @games = Game.all
+    @games = Game.order("title")
+  end
+
+  def most_popular
+    @games = Game.all.sort_by { |game| game.vote_count }.reverse
+    render :index
+  end
+
+  def most_owned
+    @games = Game.all.sort_by { |game| game.owners.count }.reverse
+    render :index
+  end
+
+  def most_wanted
+    @games = Game.all.sort_by { |game| game.wanters.count }.reverse
+    render :index
   end
 
   def show
-    @comments = @game.comments
+    @comments = @game.comments.order("created_at DESC")
     @comment = Comment.new
   end
 

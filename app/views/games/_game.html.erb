@@ -1,6 +1,6 @@
 <div class="game-wrapper">
   <div class="game">
-    <img class="game-img pure-img-responsive" src="<%= game.image_url %>" alt="<%= game.title %>" />
+    <a href="/games/<%= game.id %>"><img class="game-img pure-img-responsive" src="<%= game.image_url %>" alt="<%= game.title %>" /></a>
     <div class="game-text">
       <h3><%= link_to "#{game.title}", game %></h3>
       <p>Players:
@@ -11,8 +11,20 @@
         <% end %>
       </p>
       <p>Average Time: <%= game.average_time %> minutes</p>
+      <% if current_user %>
+        <% if current_user.games.include?(game) %>
+          Owned!
+        <% else %>
+          <%= button_to "Have It!", {controller: "users", action: "owned_games", id: current_user.id, game: game.id}, method: "post" %>
+        <% end %>
+        <% if current_user.wanted_games.include?(game) %>
+          Wanted!
+        <% else %>
+          <%= button_to "Want It!", {controller: "users", action: "wanted_games", id: current_user.id, wanted_game: game.id}, method: "post" %>
+        <% end %>
+      <% end %>
     </div>
-    <p class="votes-label">votes</v>
+    <p class="votes-label">votes</p>
     <div class="game-votes">
       <%= game.vote_count %>
     </div>

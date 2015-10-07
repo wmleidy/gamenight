@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'games/most-popular' => 'games#most_popular', as: :most_popular_games
+  get 'games/most-owned'   => 'games#most_owned',   as: :most_owned_games
+  get 'games/most-wanted'  => 'games#most_wanted',  as: :most_wanted_games
+
   resources :games
   resources :users, only: [:index, :show]
 
@@ -11,9 +15,9 @@ Rails.application.routes.draw do
   post 'games/:id/downvote'  => 'games#downvote', as: :downvote_game
   post 'comments/:id/upvote' => 'comments#upvote', as: :upvote_comment
   post 'comments/:id/downvote' => 'comments#downvote', as: :downvote_comment
+  post 'users/:id/owned_games/:game' => 'users#owned_games'
+  post 'users/:id/wanted_games/:wanted_game' => 'users#wanted_games'
   post 'users/:id/:buddy' => 'users#buddies'
-  post 'users/:id/:game' => 'users#owned_games'
-  post 'users/:id/:wanted_game' => 'users#wanted_games'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
