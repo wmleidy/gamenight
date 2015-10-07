@@ -14,6 +14,26 @@ class CommentsController < ApplicationController
   	end
   end
 
+  def upvote
+    @comment = Comment.find(params[:id])
+    @game = @comment.game
+    @vote = Vote.find_or_initialize_by(user_id: current_user.id, votable_type: "Comment", votable_id: @comment.id)
+    new_value = @vote.value + 1
+    @vote.assign_attributes(value: new_value)
+    @vote.save
+    redirect_to game_path(@game)
+  end
+
+  def downvote
+    @comment = Comment.find(params[:id])
+    @game = @comment.game
+    @vote = Vote.find_or_initialize_by(user_id: current_user.id, votable_type: "Comment", votable_id: @comment.id)
+    new_value = @vote.value - 1
+    @vote.assign_attributes(value: new_value)
+    @vote.save
+    redirect_to game_path(@game)
+  end
+
 
   private
 
