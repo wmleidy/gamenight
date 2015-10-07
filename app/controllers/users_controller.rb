@@ -1,21 +1,28 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
+
+  def index
+    @user = User.search(params[:search])
+    if @user
+      redirect_to user_path(@user)
+    else
+      @error = "User not found"
+      redirect_to user_path(current_user)
+    end
+  end
+
   def show
     @user = User.find(params[:id])
-
     if current_user == nil
       redirect_to new_user_session_path
-    elsif current_user.id == @user.id
-      render :'users/show'
-    elsif @user.relationships.find_by(buddy_id: current_user.id)
-      render :'users/show'
     else
-      redirect_to root_path
+      render :'users/show'
     end
   end
 
   def buddies
     @user = User.find(params[:id])
-    @buddy = User.find(params[:buddies])
+    @buddy = User.find(params[:buddy])
 
     if @user.id == @buddy.id
       @error = "You're not able to add yourself as a buddy"
@@ -23,6 +30,7 @@ class UsersController < ApplicationController
       @error = "This user is already your buddy"
     else
       Relationship.create!(user_id: @user.id, buddy_id: @buddy.id)
+      redirect_to user_path(@user)
     end
   end
 
