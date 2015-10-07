@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include ApplicationHelper
+  before_action :authenticate_user!
 
   def index
     @user = User.search(params[:search])
@@ -11,16 +12,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def show(partial = "")
+
+  def show
+    partial = params[:query]
     @user = User.find(params[:id])
+
     if current_user == nil
       redirect_to new_user_session_path
     else
       case partial
-      when 'buddies'
       when 'games'
+        render :'users/_user_games'
       when 'wanted games'
-        render :'users/_user_wan'
+        render :'users/_user_wanted_games'
+      when 'comments'
+        render :'users/_comments'
+      when 'buddies'
+        render :'users/_buddies'
       else
         render :'users/show'
       end

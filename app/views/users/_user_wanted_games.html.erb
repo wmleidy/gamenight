@@ -1,0 +1,23 @@
+<h3><%= @user.username %>'s Wanted Games</h3>
+  <% @user.wanted_games.each do |game| %>
+    <div class="game-wrapper">
+      <div class="game">
+        <img class="game-img pure-img-responsive" src="<%= game.image_url %>" alt="<%= game.title %>" />
+        <div class="game-text">
+          <h3><%= link_to "#{game.title}", game %></h3>
+          <p>Players:
+            <% if game.min_players == game.max_players %>
+              <%= game.min_players %>
+            <% else %>
+              <%= game.min_players %>-<%= game.max_players %>
+            <% end %>
+          </p>
+          <p>Average Time: <%= game.average_time %> minutes</p>
+        </div>
+        <p class="votes-label">votes</v>
+        <div class="game-votes">
+          <%= game.vote_count %>
+        </div>
+      </div>
+    </div>
+  <% end %>
