@@ -1,36 +1,59 @@
-.nav-custom {
-  background-color: black;
+#logo {
+  /*opacity: .7;*/
+  background-color: white;
+  margin: 1em 2em 1em 2em;
+
+  padding: .5em;
+  border-radius: 35%;
 }
 
-.body-container {
-  /*background-image: url("/images/dice_background.jpeg");*/
+.title-bar {
+  position: relative;
+  overflow: hidden;
 }
 
 .site-title {
 	/*margin-right: 8em;*/
-	font-family: "Courier New", Courier, monospace;
+  position: relative;
+  font-size: 4em;
+	font-family: 'Fredericka the Great', cursive;
 	text-align: center;
-	color: #C6B610;
-	padding-bottom: 1em;
+	color: black;
+	/*padding-bottom: 1em;*/
+  z-index: 2;
+  /*background-color: gray;
+  background-size: 3em;*/
+}
+
+.title-bar img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.1;
 }
 
 .site-subtitle {
+  font-size: 1em;
 	margin-right: 3em;
-  font-family: Lucida;
-  text-align: right;
+  font-family: "Cedarville Cursive", cursive;
+  text-align: center;
   margin-bottom: .5em;
   font-style: italic;
+  color: #433000;
+  opacity: .5;
 }
 .user-login{
-	text-align: right;
+ 
+	text-align: center;
 	color: #1BA20D;
-
 }
 
 
 #menu
 	.menu-item-custom {
-		background-color: white;
+		background-color: black;
 	}
 
 	.menu-custom {
@@ -43,14 +66,25 @@
 		background-color: white;
 	}
 
-#main
+  .menu-heading-custom {
+    background-color: white;
+  }
 
+  .pure-menu-list a {
+    font-family: "Loved by the King", cursive;
+  }
+
+#main
   .partial-header {
     color: #C20F18;
+    font-family: "Cedarville Cursive", cursive;
+    padding-left: 1em;
+    /*text-align: right:;*/
   }
 
   a {
   	color: #053700;
+    font-size: 1.5em;
   }
 
   .content-subhead-custom{
@@ -78,7 +112,9 @@
   left: 0;
   background-image: url("/images/mobile-background.jpeg");
   background-size: contain;
+  background-repeat: none;
   border-radius: 5%;
+  box-shadow: 10px 10px 5px gray;
 
 }
 
@@ -101,35 +137,48 @@
 }
 
 .game-text p {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Henny Penny", cursive;
   font-size: 1em;
   color: #420003;
   opacity: .7;
 }
 
 .game-text h3 {
-  font-size: 1.5em;
-  font-family: "Times New Roman", Times, serif;
+  font-size: 1em;
+  font-family: "Fredericka the Great", cursive;
+
+}
+
+.game-text h3 a {
+  text-decoration: none;
 
 }
 
 .votes-label {
   position: absolute;
-  top:78%;
+  top:80%;
   left: 80%;
-  font-family: Georgia, serif;
+  font-family: "Fredericka the Great", cursive;
   font-size: 1em;
   font-style: italic;
-  color: #320D61;
+  color: #433D00 ;
 
 }
 .game-votes {
   position: absolute;
   top: 85%;
   left: 80%;
-  font-family: Georgia, serif;
-  font-size: 3em;
+  font-family: "Cedarville Cursive", cursive;
+  font-size: 2em;
   color: #320D61;
+}
+
+.custom-restricted {
+  height: 15em;
+  min-width:5em;
+  width: 30em;
+  border: 1px solid gray;
+  border-radius: 4px;
 }
 
 /* Desktop Rules */

@@ -87,9 +87,10 @@ appears on the left side of the page.
     left: 0;
     bottom: 0;
     z-index: 1000; /* so the menu or its navicon stays above all content */
-    background: white;
+    background: black;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    /*border-right: 2px solid black;*/
 }
     /*
     All anchors inside the menu should be styled like this.
@@ -127,9 +128,17 @@ appears on the left side of the page.
     /*
     This styles the selected menu item `<li>`.
     */
-    #menu .pure-menu-selected,
+    /*#menu .pure-menu-selected {
+        background-color: #16042D;
+
+    }*/
+
     #menu .pure-menu-heading {
-        background: white;
+        font-family: "Henny Penny", cursive;
+        background: black;
+        font-size: 110%;
+        color: white;
+        margin: .5em;
     }
         /*
         This styles a link within a selected menu item `<li>`.
@@ -142,9 +151,8 @@ appears on the left side of the page.
     This styles the menu heading.
     */
     #menu .pure-menu-heading {
-        font-size: 110%;
-        color: black;
-        margin: 0;
+        /*font-size: 110%;*/
+
     }
 
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
