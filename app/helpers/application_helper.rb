@@ -7,6 +7,10 @@ module ApplicationHelper
   end
 
   def check_friend_status(user, buddy)
-    Relationship.find_by(user_id: user,buddy_id: buddy)
+    if user == buddy
+      true
+    else
+      Relationship.find_by(user_id: user,buddy_id: buddy)
+    end
   end
 end

@@ -3,7 +3,12 @@ class UsersController < ApplicationController
 
   def index
     @user = User.search(params[:search])
-    redirect_to user_path(@user)
+    if @user
+      redirect_to user_path(@user)
+    else
+      @error = "User not found"
+      redirect_to user_path(current_user)
+    end
   end
 
   def show
@@ -17,7 +22,7 @@ class UsersController < ApplicationController
 
   def buddies
     @user = User.find(params[:id])
-    @buddy = User.find(params[:buddies])
+    @buddy = User.find(params[:buddy])
 
     if @user.id == @buddy.id
       @error = "You're not able to add yourself as a buddy"
@@ -25,6 +30,7 @@ class UsersController < ApplicationController
       @error = "This user is already your buddy"
     else
       Relationship.create!(user_id: @user.id, buddy_id: @buddy.id)
+      redirect_to user_path(@user)
     end
   end
 
