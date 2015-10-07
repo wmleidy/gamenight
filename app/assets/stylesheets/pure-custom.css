@@ -204,7 +204,13 @@
 .comment-text-area {
   min-width:5em;
   width: 30em;
+}
 
+/*game buttons*/
+
+
+.game-text form {
+  display: inline;
 }
 
 /*game descrition*/

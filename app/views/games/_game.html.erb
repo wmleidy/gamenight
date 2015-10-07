@@ -11,6 +11,7 @@
         <% end %>
       </p>
       <p>Average Time: <%= game.average_time %> minutes</p>
+      <div class="game-forms">
       <% if current_user %>
         <% if current_user.games.include?(game) %>
           Owned!
@@ -23,6 +24,7 @@
           <%= button_to "Want It!", {controller: "users", action: "wanted_games", id: current_user.id, wanted_game: game.id}, method: "post" %>
         <% end %>
       <% end %>
+    </div>
     </div>
     <p class="votes-label">votes</p>
     <div class="game-votes">
