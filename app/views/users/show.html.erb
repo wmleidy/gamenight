@@ -1,6 +1,6 @@
 <img src="<%= @user.avatar_url%>" />
 
-<h1><%= @user.username %>'s Profile</h1>
+<h1 class="partial-header"><%= @user.username %>'s Profile</h1>
 
 <% if check_friend_status(current_user.id,@user.id) == nil %>
   <%= button_to "Send Buddy Request", {action: "buddies", id: current_user.id, buddy: @user.id}, method: "post" %>

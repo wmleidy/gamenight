@@ -1,22 +1,22 @@
-<h3>Add A Buddy</h3>
+<h3 class="partial-header">Add A Buddy</h3>
 <%= render 'search' %>
 
-<h3><%= @user.username %>'s Mutual Buddies</h3>
-<ul>
+<h3 class="partial-sub-header"><%= @user.username %>'s Mutual Buddies</h3>
+<ul class="user-list">
   <% @user.mutual.each do |buddy| %>
     <li><a href="/users/<%= buddy.id%>"><%= buddy.username %></a></li>
   <% end %>
 </ul>
 
-<h3><%= @user.username %>'s Pending Buddies</h3>
-<ul>
+<h3 class="partial-sub-header"><%= @user.username %>'s Pending Buddies</h3>
+<ul class="user-list">
   <% @user.pending.each do |buddy| %>
     <li><a href="/users/<%= buddy.id%>"><%= buddy.username %></a></li>
   <% end %>
 </ul>
 
-<h3><%= @user.username %>'s Buddy Requests</h3>
-<ul>
+<h3 class="partial-sub-header"><%= @user.username %>'s Buddy Requests</h3>
+<ul class="user-list">
   <% @user.requests.each do |buddy| %>
     <li><a href="/users/<%= buddy.id %>"><%= buddy.username %></a>
       <%= button_to "Accept Buddy Request", {action: "change_status", id: buddy.id, buddy_id: @user.id}, method: "post" %>
