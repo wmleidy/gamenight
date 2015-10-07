@@ -1,0 +1,9 @@
+<h1> Comments </h1>
+
+<ul>
+<% @user.comments.each do |comment| %>
+  <h3><%= comment.body %></h3>
+  <p>Game commented on: <a href="/games/<%= comment.game_id %>"><%= comment.game.title %></a></p>
+  <p>Commented on: <%= comment.created_at %></p>
+<% end %>
+</ul>

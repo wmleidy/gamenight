@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   attr_accessor :login
+  # scope :pending, -> { where(self.buddies.status == 0)}
+  # scope :mutual, -> { where(self.buddies.status == 1)}
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -28,6 +30,30 @@ class User < ActiveRecord::Base
     end
   end
 
+  def mutual
+    buddy_ids = self.relationships.select { |relationship| relationship.status == 1 }
+
+    @buddies = []
+
+    buddy_ids.each do |buddy|
+      @buddies << User.find(buddy.buddy_id)
+    end
+
+    @buddies
+  end
+
+  def pending
+    buddy_ids = self.relationships.select { |relationship| relationship.status == 0 }
+
+    @buddies = []
+
+    buddy_ids.each do |buddy|
+      @buddies << User.find(buddy.buddy_id)
+    end
+
+    @buddies
+  end
+
   private
 
   def set_avatar
@@ -35,6 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def set_username
-    self.username ||= Faker::Internet.user_name
+    num = rand(1..10000)
+    self.username ||= "BoardGamer#{num}"
   end
 end
