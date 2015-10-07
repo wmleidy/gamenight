@@ -28,12 +28,13 @@
        <% end %>
      </ul>
   <% if current_user %>
-    <p>What’s your opinion about this game? Vote here:
+    <p>What’s your opinion about this game?</p>
+    <p>Vote here:
     <%= link_to image_tag("1_14_up.png"), upvote_game_path(@game), method: :post %>
-    <%= link_to image_tag("1_14_down.png"), downvote_game_path(@game), method: :post %>
+    <%= link_to image_tag("1_14_down.png"), downvote_game_path(@game), method: :post %></p>
   <% end %>
 
-  <% if current_user.admin_privileges %>
+  <% if current_user && current_user.admin_privileges %>
     <p><%= button_to "Admin? Edit this game...", edit_game_path(@game), method: :get %></p>
   <% end %>
  </div>
