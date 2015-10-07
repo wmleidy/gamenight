@@ -30,16 +30,16 @@
 
             <ul class="pure-menu-list">
                 <li class="menu-item-custom pure-menu-item">
-                  <%= link_to "your comments", user_path(current_user || 0, :query => "comments")%>
+                  <%= link_to "your profile", user_path(current_user || 0), {:class => "pure-menu-link"}%>
                 </li>
-                <li class="menu-item-custom pure-menu-item"><%= link_to "your buddies", user_path(current_user || 0, :query => "buddies")%></li>
+                <li class="menu-item-custom pure-menu-item"><%= link_to "your buddies", user_path(current_user || 0, :query => "buddies"), {:class => "pure-menu-link"} %></li>
 
                 <li class="menu-item-custom pure-menu-item" class="menu-item-divided pure-menu-selected">
-                  <%= link_to "your games", user_path(current_user || 0, :query => "games")%>
+                  <%= link_to "your games", user_path(current_user || 0, :query => "games"), {:class => "pure-menu-link"} %>
                 </li>
 
                 <li class="menu-item-custom pure-menu-item">
-                  <%= link_to "your wishlist", user_path(current_user || 0, :query => "wanted games")%>
+                  <%= link_to "your wishlist", user_path(current_user || 0, :query => "wanted games"), {:class => "pure-menu-link"} %>
                 </li>
             </ul>
             <a class="pure-menu-heading" href="#"><img class=" pure-image-responsive">Games</a>
@@ -52,15 +52,18 @@
 
   <div id="main">
     <nav class="pure-g nav-custom">
+      <h6 class="user-login pure-u-1-4"></h6>
       <% if current_user %>
-        <h6 class="user-login pure-u-1-4"></h6>
-        <h6 class="user-login pure-u-1-4"><%= link_to "logout", destroy_user_session_path %></h6>
+        <h6 class="user-login pure-u-1-4"><%= link_to "Welcome #{current_user.email}!", user_path(current_user) %></h6>
+        <h6 class="user-login pure-u-1-4"><%= link_to "logout", destroy_user_session_path, method: :delete %></h6>
       <% else %>
-        <h6 class="user-login pure-u-1-4"><%= link_to "signup", user_registration_path %></h6>
-        <h6 class="user-login pure-u-1-4"><%= link_to "login", new_user_session_path %></h6>
+        <h6 class="user-login pure-u-1-4"></h6>
+        <h6 class="user-login pure-u-1-4"><%= link_to "signup or login", new_user_session_path %></h6>
       <% end %>
+
       <h6 class="user-login pure-u-1-4"><%= link_to "games home", root_path %></h6>
-      <h4 class="user-login zero-buddies pure-u-1-4">0-buddies</h4>
+      <h6 class="user-login zero-buddies pure-u-1-4"><%= link_to "0-buddies", "https://github.com/chi-cicadas-2015/gamenight" %></h6>
+
     </nav>
     <div class="title-bar">
     <h1 class="site-title">Gamenight</h1>
