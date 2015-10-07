@@ -2,7 +2,6 @@
   /*opacity: .7;*/
   background-color: white;
   margin: 1em 2em 1em 2em;
-
   padding: .5em;
   border-radius: 35%;
 }
@@ -45,7 +44,7 @@
   opacity: .5;
 }
 .user-login{
- 
+
 	text-align: center;
 	color: #1BA20D;
 }
@@ -173,12 +172,54 @@
   color: #320D61;
 }
 
+
+
+/*comment related things*/
+
+.comment-table {
+  margin: 2em;
+}
+
 .custom-restricted {
   height: 15em;
   min-width:5em;
   width: 30em;
   border: 1px solid gray;
   border-radius: 4px;
+}
+
+.comment {
+  text-decoration: bold;
+  color: #320D61;
+  font-size: 1em;
+  font-family: "Henny Penny", cursive; ;
+  padding: .5em;
+  margin: 1em;
+  border: 1px solid #8D080E;
+  border-radius: 1%;
+  box-shadow: 0px 0px 0px 5px gray;
+
+}
+
+.comment-text-area {
+  min-width:5em;
+  width: 30em;
+}
+
+/*game buttons*/
+
+
+.game-text form {
+  display: inline;
+}
+
+/*game descrition*/
+
+.game-description {
+  margin: 2em;
+  font-size: 1.1em;
+  color: #8D080E;
+  /*font-family: "Loved by the King", cursive ;*/
 }
 
 /* Desktop Rules */
