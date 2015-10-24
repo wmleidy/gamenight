@@ -96,6 +96,11 @@ class GamesController < ApplicationController
     redirect_to game_path(@game)
   end
 
+  def search
+    @games = Game.search(params[:search])
+    render :index
+  end
+
   private
   def set_game
     @game = Game.find(params[:id])

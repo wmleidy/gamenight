@@ -13,6 +13,16 @@ class Game < ActiveRecord::Base
   has_many :desired_games, foreign_key: "wanted_game_id"
   has_many :wanters, through: :desired_games
 
+  def self.search(query)
+    if query == ""
+      Game.all
+    else
+      exact = Game.where('lower(title) = ?', query.downcase)
+      fuzzy = Game.where('lower(title) LIKE ?', "%#{query.downcase}%")
+      (exact + fuzzy).uniq
+    end
+  end
+
   def vote_count
     self.votes.inject(0) { |total, vote| total += vote.value }
   end
