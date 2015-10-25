@@ -1,0 +1,18 @@
+<h2>Having a party and need to pick the perfect game?</h2>
+
+<p>Enter the number of guests, desired game length, and/or desired game mechanics below, and we’ll search through our database for the ideal game for your get together!</p>
+
+<%= form_tag(advanced_search_path, :method => "get") do %>
+	<%= label_tag(:players, "Number of players:") %>
+  <%= number_field_tag(:players) %>
+  <%= label_tag(:game_time, "Approximate game time (in minutes)") %>
+  <%= number_field_tag(:game_time) %>
+  <% possible_mechanics = [] %>
+  <% @mechanics.each do |mechanic| %>
+    <% possible_mechanics << [mechanic.trait, mechanic.trait] %>
+  <% end %>
+  <%= options_for_select(possible_mechanics) %>
+  <label for="game_mechanics">Mechanics</label>
+  <%= select_tag (:mechanics, options_for_select(possible_mechanics)) %>
+  <%= submit_tag("Search") %>
+<% end %>
