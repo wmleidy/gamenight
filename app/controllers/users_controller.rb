@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
 
+  respond_to :html, :js, :json
+
   def index
     @user = User.search(params[:search])
     if @user
@@ -53,11 +55,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @game = Game.find(params[:game])
 
-    if OwnedGame.find_by(owner_id: @user.id, game_id: @game.id)
-      @error = "You already own this game"
-      render :"games/index"
+    OwnedGame.find_or_create_by(owner_id: @user.id, game_id: @game.id)
+
+    if request.xhr?
+      #implicit call
     else
-      OwnedGame.create!(owner_id: @user.id, game_id: @game.id)
       redirect_to :back
     end
   end
@@ -66,11 +68,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @game = Game.find(params[:wanted_game])
 
-    if DesiredGame.find_by(wanter_id: @user.id, wanted_game_id: @game.id)
-      @error = "You already have this game in your wishlist"
-      render :"games/index"
+    DesiredGame.find_or_create_by(wanter_id: @user.id, wanted_game_id: @game.id)
+
+    if request.xhr?
+      #implicit call
     else
-      DesiredGame.create!(wanter_id: @user.id, wanted_game_id: @game.id)
       redirect_to :back
     end
   end

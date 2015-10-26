@@ -14,14 +14,14 @@
       <div class="game-forms">
       <% if current_user %>
         <% if current_user.games.include?(game) %>
-          Owned!
+           <%= button_to "Owned!", {controller: "users", action: "owned_games", id: current_user.id, game: game.id}, method: "post", remote: true, class: "own-button-#{game.id}", disabled: true %>
         <% else %>
-          <%= button_to "Have It!", {controller: "users", action: "owned_games", id: current_user.id, game: game.id}, method: "post" %>
+          <%= button_to "Have It!", {controller: "users", action: "owned_games", id: current_user.id, game: game.id}, method: "post", remote: true, class: "own-button-#{game.id}" %>
         <% end %>
         <% if current_user.wanted_games.include?(game) %>
-          Wanted!
+          <%= button_to "Wanted!", {controller: "users", action: "owned_games", id: current_user.id, game: game.id}, method: "post", remote: true, class: "want-button-#{game.id}", disabled: true %>
         <% else %>
-          <%= button_to "Want It!", {controller: "users", action: "wanted_games", id: current_user.id, wanted_game: game.id}, method: "post" %>
+          <%= button_to "Want It!", {controller: "users", action: "wanted_games", id: current_user.id, wanted_game: game.id}, method: "post", remote: true, class: "want-button-#{game.id}" %>
         <% end %>
       <% end %>
     </div>
