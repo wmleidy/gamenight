@@ -7,7 +7,10 @@ class CommentsController < ApplicationController
   	@game = Game.find(params[:id])
   	@comment = Comment.new(comment_params)
   	@comment.assign_attributes(user_id: current_user.id, game_id: params[:id])
-  	if @comment.save
+  	if request.xhr?
+      @comment.save
+      # implicit call to create.js.erb
+    elsif @comment.save
   		redirect_to game_path(@game)
   	else
   		render :"games/show"
