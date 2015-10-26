@@ -12,18 +12,20 @@
         <% end %>
       </p>
       <p>Average Time: <%= @game.average_time %> minutes</p>
-        <% if current_user %>
-          <% if current_user.games.include?(@game) %>
-            Owned!
-          <% else %>
-            <%= button_to "Have It!", {controller: "users", action: "owned_games", id: current_user.id, game: @game.id}, method: "post" %>
-          <% end %>
-          <% if current_user.wanted_games.include?(@game) %>
-            Wanted!
-          <% else %>
-            <%= button_to "Want It!", {controller: "users", action: "wanted_games", id: current_user.id, wanted_game: @game.id}, method: "post" %>
-          <% end %>
+      <div class="game-forms">
+      <% if current_user %>
+        <% if current_user.games.include?(@game) %>
+           <%= button_to "Owned!", {controller: "users", action: "owned_games", id: current_user.id, game: @game.id}, method: "post", remote: true, class: "own-button-#{@game.id}", disabled: true %>
+        <% else %>
+          <%= button_to "Have It!", {controller: "users", action: "owned_games", id: current_user.id, game: @game.id}, method: "post", remote: true, class: "own-button-#{@game.id}" %>
         <% end %>
+        <% if current_user.wanted_games.include?(@game) %>
+          <%= button_to "Wanted!", {controller: "users", action: "owned_games", id: current_user.id, game: @game.id}, method: "post", remote: true, class: "want-button-#{@game.id}", disabled: true %>
+        <% else %>
+          <%= button_to "Want It!", {controller: "users", action: "wanted_games", id: current_user.id, wanted_game: @game.id}, method: "post", remote: true, class: "want-button-#{@game.id}" %>
+        <% end %>
+      <% end %>
+    </div>
     </div>
     <p class="votes-label">votes</p>
     <div class="game-votes">
