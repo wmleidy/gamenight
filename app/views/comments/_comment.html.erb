@@ -1,9 +1,9 @@
 <li class="comment pure-menu-item comment" id="comment<%= comment.id %>">
   <p><%= comment.body %><br>
-    Vote total: <%= comment.vote_count %>
+    <span id="vote-total-<%= comment.id %>">Vote total: <%= comment.vote_count %></span>
     <% if current_user %>
-  	<%= link_to image_tag("1_14_up.png"), upvote_comment_path(comment), method: :post %>
-    <%= link_to image_tag("1_14_down.png"), downvote_comment_path(comment), method: :post %>
+  	<%= link_to image_tag("1_14_up.png"), upvote_comment_path(comment), method: :post, remote: true %>
+    <%= link_to image_tag("1_14_down.png"), downvote_comment_path(comment), method: :post, remote: true %>
   <% end %>
   </p>
 </li>
