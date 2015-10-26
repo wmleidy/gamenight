@@ -107,7 +107,11 @@ class GamesController < ApplicationController
     new_value = @vote.value + 1
     @vote.assign_attributes(value: new_value)
     @vote.save
-    redirect_to game_path(@game)
+    if request.xhr?
+      #implicit call to upvote.js.erb
+    else
+      redirect_to game_path(@game)
+    end
   end
 
   def downvote
@@ -116,7 +120,11 @@ class GamesController < ApplicationController
     new_value = @vote.value - 1
     @vote.assign_attributes(value: new_value)
     @vote.save
-    redirect_to game_path(@game)
+    if request.xhr?
+      #implicit call to downvote.js.erb
+    else
+      redirect_to game_path(@game)
+    end
   end
 
   def search
