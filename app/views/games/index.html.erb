@@ -7,7 +7,5 @@
 </div>
 <br style="clear:both" />
 <%= render @games %>
-<% if @games.empty? %>
-	<p>No matching games found.</p>
-<% end %>
+
 <p><%= link_to "Add a New Game", new_game_path %></p>

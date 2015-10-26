@@ -98,7 +98,7 @@ class GamesController < ApplicationController
 
   def search
     @games = Game.search(params[:search])
-    render :index
+    render :search_results
   end
 
   def advanced_search_form
@@ -107,7 +107,7 @@ class GamesController < ApplicationController
 
   def advanced_search
     @games = Game.advanced_search(params[:players], params[:game_time], params[:mechanics])
-    render :index
+    render :search_results
   end
 
   private
