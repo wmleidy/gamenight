@@ -105,6 +105,11 @@ class GamesController < ApplicationController
     @mechanics = Mechanic.all
   end
 
+  def advanced_search
+    @games = Game.advanced_search(params[:players], params[:game_time], params[:mechanics])
+    render :index
+  end
+
   private
   def set_game
     @game = Game.find(params[:id])

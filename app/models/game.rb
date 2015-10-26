@@ -23,6 +23,20 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def self.advanced_search(players, time, feature)
+    results = []
+    unless players == ""
+      results = Game.where('min_players <= ? AND max_players >= ?', players, players)
+    end
+    unless time == ""
+      results = results.where('average_time >= ? AND average_time <= ?', time.to_i - 15, time.to_i + 15)
+    end
+    unless feature == ""
+      results = results.select { |game| game.mechanics.map { |mechanic| mechanic.trait }.include?(feature)}
+    end
+    results
+  end
+
   def vote_count
     self.votes.inject(0) { |total, vote| total += vote.value }
   end
