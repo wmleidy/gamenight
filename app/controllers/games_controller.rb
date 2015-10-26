@@ -5,23 +5,46 @@ class GamesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :upvote]
   before_filter :check_admin_status, :only => [:edit, :update, :destroy]
 
+  respond_to :html, :js, :json
+
   def index
     @games = Game.order("title")
+
+    if request.xhr?
+      render :filter
+    else
+      render :index
+    end
   end
 
   def most_popular
     @games = Game.all.sort_by { |game| game.vote_count }.reverse
-    render :index
+
+    if request.xhr?
+      render :filter
+    else
+      render :index
+    end
   end
 
   def most_owned
     @games = Game.all.sort_by { |game| game.owners.count }.reverse
-    render :index
+    
+    if request.xhr?
+      render :filter
+    else
+      render :index
+    end
   end
 
   def most_wanted
     @games = Game.all.sort_by { |game| game.wanters.count }.reverse
-    render :index
+    
+    if request.xhr?
+      render :filter
+    else
+      render :index
+    end
   end
 
   def show
@@ -84,7 +107,11 @@ class GamesController < ApplicationController
     new_value = @vote.value + 1
     @vote.assign_attributes(value: new_value)
     @vote.save
-    redirect_to game_path(@game)
+    if request.xhr?
+      #implicit call to upvote.js.erb
+    else
+      redirect_to game_path(@game)
+    end
   end
 
   def downvote
@@ -93,7 +120,25 @@ class GamesController < ApplicationController
     new_value = @vote.value - 1
     @vote.assign_attributes(value: new_value)
     @vote.save
-    redirect_to game_path(@game)
+    if request.xhr?
+      #implicit call to downvote.js.erb
+    else
+      redirect_to game_path(@game)
+    end
+  end
+
+  def search
+    @games = Game.search(params[:search])
+    render :search_results
+  end
+
+  def advanced_search_form
+    @mechanics = Mechanic.all
+  end
+
+  def advanced_search
+    @games = Game.advanced_search(params[:players], params[:game_time], params[:mechanics])
+    render :search_results
   end
 
   private

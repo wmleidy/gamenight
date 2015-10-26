@@ -3,11 +3,16 @@ class CommentsController < ApplicationController
 
   before_action :authenticate_user!
 
+  respond_to :html, :js, :json
+
   def create
   	@game = Game.find(params[:id])
   	@comment = Comment.new(comment_params)
   	@comment.assign_attributes(user_id: current_user.id, game_id: params[:id])
-  	if @comment.save
+  	if request.xhr?
+      @comment.save
+      # implicit call to create.js.erb
+    elsif @comment.save
   		redirect_to game_path(@game)
   	else
   		render :"games/show"
@@ -21,7 +26,11 @@ class CommentsController < ApplicationController
     new_value = @vote.value + 1
     @vote.assign_attributes(value: new_value)
     @vote.save
-    redirect_to game_path(@game)
+    if request.xhr?
+      #implicit call to upvote.js.erb
+    else
+      redirect_to game_path(@game)
+    end
   end
 
   def downvote
@@ -31,7 +40,11 @@ class CommentsController < ApplicationController
     new_value = @vote.value - 1
     @vote.assign_attributes(value: new_value)
     @vote.save
-    redirect_to game_path(@game)
+    if request.xhr?
+      #implicit call to downvote.js.erb
+    else
+      redirect_to game_path(@game)
+    end
   end
 
 

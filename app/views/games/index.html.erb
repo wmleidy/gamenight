@@ -1,11 +1,12 @@
 <h1 class=" games-index partial-header">All Games</h1>
 <div class="game-link-bar">
-	<%= link_to "A-Z", games_path %>
-	<%= link_to "Most Popular", most_popular_games_path %>
-	<%= link_to "Most Owned", most_owned_games_path %>
-	<%= link_to "Most Wanted", most_wanted_games_path %>
+	<%= link_to "A-Z", { controller: 'games', action: 'index', remote: true } %>
+	<%= link_to "Most Popular", { controller: 'games', action: 'most_popular', remote: true } %>
+	<%= link_to "Most Owned", { controller: 'games', action: 'most_owned', remote: true } %>
+	<%= link_to "Most Wanted", { controller: 'games', action: 'most_wanted', remote: true }%>
 </div>
 <br style="clear:both" />
-<%= render @games %>
-
+<div id="games">
+	<%= render @games %>
+</div>
 <p><%= link_to "Add a New Game", new_game_path %></p>
