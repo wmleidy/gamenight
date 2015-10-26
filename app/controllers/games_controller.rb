@@ -5,23 +5,46 @@ class GamesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :upvote]
   before_filter :check_admin_status, :only => [:edit, :update, :destroy]
 
+  respond_to :html, :js, :json
+
   def index
     @games = Game.order("title")
+
+    if request.xhr?
+      render :filter
+    else
+      render :index
+    end
   end
 
   def most_popular
     @games = Game.all.sort_by { |game| game.vote_count }.reverse
-    render :index
+
+    if request.xhr?
+      render :filter
+    else
+      render :index
+    end
   end
 
   def most_owned
     @games = Game.all.sort_by { |game| game.owners.count }.reverse
-    render :index
+    
+    if request.xhr?
+      render :filter
+    else
+      render :index
+    end
   end
 
   def most_wanted
     @games = Game.all.sort_by { |game| game.wanters.count }.reverse
-    render :index
+    
+    if request.xhr?
+      render :filter
+    else
+      render :index
+    end
   end
 
   def show
