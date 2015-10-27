@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @user = User.search(params[:search])
-    if @user
-      redirect_to user_path(@user)
+    @users = User.search(params[:search])
+    if @users
+      render :'users/index'
     else
       @error = "User not found"
       redirect_to user_path(current_user)
