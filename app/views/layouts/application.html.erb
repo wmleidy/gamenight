@@ -61,11 +61,11 @@
     <nav class="pure-g nav-custom">
       <h6 class="user-login pure-u-1-4"></h6>
       <% if current_user %>
-        <h6 class="user-login pure-u-1-4"><%= link_to "Welcome #{current_user.email}!", user_path(current_user) %></h6>
+        <h6 class="user-login pure-u-1-4"><%= link_to "Welcome #{current_user.username}!", user_path(current_user) %></h6>
         <h6 class="user-login pure-u-1-4"><%= link_to "logout", destroy_user_session_path, method: :delete %></h6>
       <% else %>
-        <h6 class="user-login pure-u-1-4"></h6>
-        <h6 class="user-login pure-u-1-4"><%= link_to "signup or login", new_user_session_path %></h6>
+        <h6 class="user-login pure-u-1-4"><%= link_to "signup", new_user_registration_path %></h6>
+        <h6 class="user-login pure-u-1-4"><%= link_to "login", new_user_session_path %></h6>
       <% end %>
 
       <h6 class="user-login zero-buddies pure-u-1-4"><%= link_to "0-buddies", "https://github.com/chi-cicadas-2015/gamenight" %></h6>
