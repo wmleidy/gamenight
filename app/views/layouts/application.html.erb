@@ -68,8 +68,6 @@
         <h6 class="user-login pure-u-1-4"><%= link_to "signup or login", new_user_session_path %></h6>
       <% end %>
 
-      <h6 class="user-login zero-buddies pure-u-1-4"><%= link_to "0-buddies", "https://github.com/chi-cicadas-2015/gamenight" %></h6>
-
     </nav>
     <div class="title-bar">
     <h1 class="site-title">Gamenight</h1>
@@ -82,6 +80,9 @@
 
     <%= yield %>
 </div>
+<footer class="pure-g">
+    <a class="pure-u-4-5" href="https://github.com/chi-cicadas-2015/gamenight"><img class="pure-image-responsive" src="/images/0.png"></a>
+</footer>
 <script src="http://purecss.io/combo/1.18.13?/js/ui.js"></script>
 </body>
 </html>
