@@ -79,7 +79,7 @@ class UsersController < ApplicationController
   def change_status
     relationship = Relationship.find_by(user_id: params[:id], buddy_id: params[:buddy_id])
     relationship.status = 1
-    p relationship
+    relationship.save
     @user = User.find(params[:buddy_id])
     redirect_to user_path(@user)
   end

@@ -24,32 +24,38 @@ class User < ActiveRecord::Base
     if username
       username.downcase!
       users = where('LOWER(username) LIKE ?', "%#{username}%")
-      return users
     else
       all
     end
   end
 
   def mutual
-    buddy_ids = self.relationships.where(status: 1)
+    my_buddy_ids = Relationship.where(user_id: self.id, status: 1)
+    buddy_ids = Relationship.where(buddy_id: self.id, status: 1)
     @buddies = []
 
-    buddy_ids.each do |buddy|
+    my_buddy_ids.each do |buddy|
       @buddies << User.find(buddy.buddy_id)
     end
+
+    buddy_ids.each do |buddy|
+      @buddies << User.find(buddy.user_id)
+    end
+
+    @buddies = @buddies.uniq.sort_by {|buddy| buddy.username }
 
     @buddies
   end
 
   def pending
-    buddy_ids = self.relationships.where(status: 0)
+    buddy_ids = Relationship.where(user_id: self.id, status: 0)
     @buddies = []
 
     buddy_ids.each do |buddy|
       @buddies << User.find(buddy.buddy_id)
     end
 
-    @buddies
+    @buddies.sort_by! {|buddy| buddy.username }
   end
 
   def requests
