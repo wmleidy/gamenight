@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   def show
     partial = params[:query]
     @user = User.find(params[:id])
-
     if current_user == nil
       redirect_to new_user_session_path
     else
