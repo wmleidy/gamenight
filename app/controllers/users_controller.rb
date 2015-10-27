@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @user = User.search(params[:search])
-    if @user
-      redirect_to user_path(@user)
+    @users = User.search(params[:search])
+    if @users
+      render :'users/index'
     else
       @error = "User not found"
       redirect_to user_path(current_user)
@@ -18,6 +18,9 @@ class UsersController < ApplicationController
   def show
     partial = params[:query]
     @user = User.find(params[:id])
+    if @user == nil
+      @user = current_user
+    end
 
     if current_user == nil
       redirect_to new_user_session_path
@@ -80,7 +83,7 @@ class UsersController < ApplicationController
   def change_status
     relationship = Relationship.find_by(user_id: params[:id], buddy_id: params[:buddy_id])
     relationship.status = 1
-    p relationship
+    relationship.save
     @user = User.find(params[:buddy_id])
     redirect_to user_path(@user)
   end

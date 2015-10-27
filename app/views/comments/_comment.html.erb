@@ -1,5 +1,5 @@
 <li class="comment pure-menu-item comment" id="comment<%= comment.id %>">
-  <p><%= comment.body %><br>
+  <p><%= comment.body %> - <a href="/users/<%= comment.user.id %>"><%= comment.user.username %></a><br>
     <span id="vote-total-<%= comment.id %>">Vote total: <%= comment.vote_count %></span>
     <% if current_user %>
   	<%= link_to image_tag("1_14_up.png"), upvote_comment_path(comment), method: :post, remote: true %>
