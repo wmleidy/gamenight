@@ -313,6 +313,19 @@
 .new_user .actions {
   padding-top: 1em;
 }
+
+/*footer related styles*/
+
+footer {
+  margin-right: 1em;
+  float: right;
+}
+
+footer a img {
+  border-radius: 5%;
+}
+
+
 /* Desktop Rules */
 
 @media screen and (min-width: 56em) {
