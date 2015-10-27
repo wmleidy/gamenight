@@ -6,6 +6,8 @@
     <% end %>
   </ul>
 <% else %>
+  <%= link_to "Edit Your Profile", edit_user_registration_path(@user) %>
+
   <h3 class="partial-header">Add A Buddy</h3>
   <%= render 'search' %>
 
