@@ -63,24 +63,27 @@
     </ul>
   </div>
 
-  <h3>Add Comment:</h3>
+  <% if current_user %>
 
-  <%= form_tag("/games/#{@game.id}/comments", method: "post", remote: true) do %>
+    <h3>Add Comment:</h3>
 
-    <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
+    <%= form_tag("/games/#{@game.id}/comments", method: "post", remote: true) do %>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
+
+        <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
       <% end %>
-      </ul>
-    </div>
-    <% end %>
 
-    <textarea class="comment-text-area" name="comment[body]"></textarea><br>
-    <%= submit_tag("Add comment") %>
+      <textarea class="comment-text-area" name="comment[body]"></textarea><br>
+      <%= submit_tag("Add comment") %>
+    <% end %>
   <% end %>
    </div>
 </div>
